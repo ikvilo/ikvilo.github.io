@@ -1,8 +1,10 @@
-const Node = require('./node.js')
-const Agenda = require('./agenda.js')
-const Explored = require('./explored.js')
+import {Node} from './node.js'
+import {Agenda} from './agenda.js'
+import {Explored} from './explored.js'
 
-exports.search = function search(initialState, goalTest, actions, successor, print = true)
+let n_nodes = 0
+
+export function search(initialState, goalTest, actions, successor, print = true)
 {
     const agenda = new Agenda()
     const explored = new Explored()
@@ -13,11 +15,16 @@ exports.search = function search(initialState, goalTest, actions, successor, pri
         const parent = agenda.getNode()
         if(goalTest(parent.state))
         {
+            n_nodes++
+            console.log(n_nodes, `  path lenght = ${parent.path().length}`)
             if(print) console.log("Solution ",parent.strPath())
             return parent.path()
         }
         else
+        {
+            n_nodes++
             if(print) console.log(parent.strPath())
+        }
 
 
         explored.add(parent.state)
