@@ -1,4 +1,4 @@
-module.exports = class Agenda extends Array
+export class Agenda extends Array
 {
     add(node)
     {
@@ -7,7 +7,7 @@ module.exports = class Agenda extends Array
 
     getNode()
     {
-        return this.pop()
+        return this.shift()
     }
 
     notEmpty()
